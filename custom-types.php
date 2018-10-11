@@ -41,6 +41,88 @@ function create_taxnews(){
 	) );
 }
 
+// хук для регистрации
+add_action('init', 'create_taxnews_sport', 0);
+function create_taxnews_sport(){
+	// список параметров: http://wp-kama.ru/function/get_taxonomy_labels
+	register_taxonomy('taxnews_sport', array('news'), array(
+		'label'                 => 'Новости спорта', // определяется параметром $labels->name
+		'labels'                => array(
+			'name'              => 'Новости спорта',
+			'singular_name'     => 'Новость спорта',
+			'search_items'      => 'Поиск Новостей спорта',
+			'all_items'         => 'Все Новости спорта',
+			'view_item '        => 'Просмотреть Новости спорта',
+			'parent_item'       => 'Родительская',
+			'parent_item_colon' => 'Родительская:',
+			'edit_item'         => 'Изменить Новость спорта',
+			'update_item'       => 'Обновить Новость спорта',
+			'add_new_item'      => 'Добавить новую Новость спорта',
+			'new_item_name'     => 'Название',
+			'menu_name'         => 'Новости спорта',
+		),
+		'description'           => '', // описание таксономии
+		'public'                => true,
+		'publicly_queryable'    => null, // равен аргументу public
+		'show_in_nav_menus'     => true, // равен аргументу public
+		'show_ui'               => true, // равен аргументу public
+		'show_in_menu'          => true, // равен аргументу show_ui
+		'show_tagcloud'         => true, // равен аргументу show_ui
+		'show_in_rest'          => null, // добавить в REST API
+		'rest_base'             => null, // $taxonomy
+		'hierarchical'          => true,
+		'update_count_callback' => '',
+		'rewrite'               => true,
+		//'query_var'             => $taxonomy, // название параметра запроса
+		'capabilities'          => array(),
+		'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+		'show_admin_column'     => false, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+		'_builtin'              => false,
+		'show_in_quick_edit'    => null, // по умолчанию значение show_ui
+	) );
+}
+
+// хук для регистрации
+add_action('init', 'create_taxnews_music', 0);
+function create_taxnews_music(){
+	// список параметров: http://wp-kama.ru/function/get_taxonomy_labels
+	register_taxonomy('taxnews_music', array('news'), array(
+		'label'                 => 'Новости музыки', // определяется параметром $labels->name
+		'labels'                => array(
+			'name'              => 'Новости музыки',
+			'singular_name'     => 'Новость музыки',
+			'search_items'      => 'Поиск Новостей музыки',
+			'all_items'         => 'Все Новости музыки',
+			'view_item '        => 'Просмотреть Новости музыки',
+			'parent_item'       => 'Родительская',
+			'parent_item_colon' => 'Родительская:',
+			'edit_item'         => 'Изменить Новость музыки',
+			'update_item'       => 'Обновить Новость музыки',
+			'add_new_item'      => 'Добавить новую Новость музыки',
+			'new_item_name'     => 'Название',
+			'menu_name'         => 'Новости музыки',
+		),
+		'description'           => '', // описание таксономии
+		'public'                => true,
+		'publicly_queryable'    => null, // равен аргументу public
+		'show_in_nav_menus'     => true, // равен аргументу public
+		'show_ui'               => true, // равен аргументу public
+		'show_in_menu'          => true, // равен аргументу show_ui
+		'show_tagcloud'         => true, // равен аргументу show_ui
+		'show_in_rest'          => null, // добавить в REST API
+		'rest_base'             => null, // $taxonomy
+		'hierarchical'          => true,
+		'update_count_callback' => '',
+		'rewrite'               => true,
+		//'query_var'             => $taxonomy, // название параметра запроса
+		'capabilities'          => array(),
+		'meta_box_cb'           => null, // callback функция. Отвечает за html код метабокса (с версии 3.8): post_categories_meta_box или post_tags_meta_box. Если указать false, то метабокс будет отключен вообще
+		'show_admin_column'     => false, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+		'_builtin'              => false,
+		'show_in_quick_edit'    => null, // по умолчанию значение show_ui
+	) );
+}
+
 add_action( 'init', 'register_post_news' );
 function register_post_news(){
 	register_post_type('news', array(
@@ -76,7 +158,7 @@ function register_post_news(){
 		//'map_meta_cap'      => null, // Ставим true чтобы включить дефолтный обработчик специальных прав
 		'hierarchical'        => false,
 		'supports'            => array('title','editor'), // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => array(‘taxnews’),
+		'taxonomies'          => array(‘taxnews’,'taxnews_sport','taxnews_music'),
 		'has_archive'         => false,
 		'rewrite'             => true,
 		'query_var'           => true,
