@@ -90,6 +90,36 @@ get_header(); ?>
 					}
 			?>
 
+			<h4>Произвольные посты по термам таксономий: "Горячие новости", "Funk)"!</h4>
+
+			<?php
+
+			 $params = array(
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'taxnews',
+							'field' => 'slug',
+							'terms' => 'hot-news'
+						),
+						array(
+							'taxonomy' => 'taxnews_music',
+							'field' => 'slug',
+							'terms' => 'funk'
+						)
+					)
+				);
+				$q = new WP_Query( $params );
+
+				if($q->have_posts()) {
+					 
+					while($q->have_posts()){ $q->the_post();
+						echo '<a href="' . get_permalink() . '">' . get_the_title() . '</a>
+						<p>' . get_the_content() . '</p>';
+					}
+				}
+				 
+			?>
+
 		</main><!-- .site-main -->
 	</div><!-- .content-area -->
 
