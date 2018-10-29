@@ -422,3 +422,6 @@ add_filter( 'widget_tag_cloud_args', 'twentysixteen_widget_tag_cloud_args' );
 
 // ===== Taxonomy & custom types ======
 require get_template_directory() . '/custom-types.php';
+
+// ===== metaboxes ======
+require get_template_directory() . '/metaboxes.php';
